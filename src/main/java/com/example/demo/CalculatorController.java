@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
 @RestController
 @RequestMapping("/calculator")
 @RequiredArgsConstructor
@@ -18,36 +20,30 @@ public class CalculatorController {
         return "Добро пожаловать в калькулятор!";
     }
     @GetMapping(path = "/plus")
-    public String answerPlus(@RequestParam(name = "num1", required = false) Integer a,
-                             @RequestParam(name = "num2", required = false) Integer b){
-        if (a == null || b == null)
-            return "Параметры не переданы.";
+    public String answerPlus(@RequestParam(name = "num1", required = false) int a,
+                             @RequestParam(name = "num2", required = false) int b){
         int plus = calculationMethods.plus(a, b);
         return a + " + " + b + " = " + plus;
     }
 
     @GetMapping(path = "/minus")
-    public String answerMinus(@RequestParam(name = "num1", required = false) Integer a,
-                              @RequestParam(name = "num2", required = false) Integer b){
-        if (a == null || b == null)
-            return "Параметры не переданы.";
+    public String answerMinus(@RequestParam(name = "num1", required = false) int a,
+                              @RequestParam(name = "num2", required = false) int b){
         int minus = calculationMethods.minus(a, b);
         return a + " - " + b + " = " + minus;
     }
 
     @GetMapping(path = "/multiply")
-    public String answerMultiply(@RequestParam(name = "num1", required = false) Integer a,
-                                 @RequestParam(name = "num2", required = false) Integer b){
-        if (a == null || b == null)
-            return "Параметры не переданы.";
+    public String answerMultiply(@RequestParam(name = "num1", required = false) int a,
+                                 @RequestParam(name = "num2", required = false) int b){
         int multiply = calculationMethods.multiply(a, b);
         return a + " * " + b + " = " + multiply;
     }
 
     @GetMapping(path = "/divide")
-    public String answerDivide(@RequestParam(name = "num1", required = false) Integer a,
-                               @RequestParam(name = "num2", required = false) Integer b){
-        if (a == null || b == null)
+    public String answerDivide(@RequestParam(name = "num1", required = false) int a,
+                               @RequestParam(name = "num2", required = false) int b){
+        if (a == 0 || b == 0)
             return "Параметры не переданы.";
         double divide;
         try{
